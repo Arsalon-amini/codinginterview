@@ -1,11 +1,9 @@
-package JavaReview;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class TopologicalSortSoln1 {
+public class TopologicalSort {
 
     //O(j + d) time, space complexity
 
