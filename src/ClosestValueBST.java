@@ -17,7 +17,7 @@ public class ClosestValueBST {
             return closestValue;
         }
     }
-    
+
     public int findClosestValueInBSTIteratively(Node tree, int target){
         //O(log n) time, O(1) space
         return findClosestValueInBSTIteratively(tree, target, tree.value);
