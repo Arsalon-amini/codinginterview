@@ -1,4 +1,5 @@
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -18,7 +19,6 @@ public class TwoNumSum {
             else if (currentSum < targetSum) left++; //left pointer forward
             else if (currentSum > targetSum) right --; //right pointer forward
         }
-
         return new int[0];
     }
 
@@ -34,6 +34,17 @@ public class TwoNumSum {
         return new int[0];
     }
 
+    public int [] pairwithTargetSum(int [] arr, int targetSum){
+        HashMap<Integer, Integer> nums = new HashMap<>();
+        for(int i = 0; i < arr.length; i++){
+            if(nums.containsKey(targetSum - arr[i]))
+                return new int [] {nums.get(targetSum - arr[i]), i};
+            else
+                nums.put(arr[i], i);
+        }
+        return new int[] {-1, -1 };  //pair not found
+
+    }
 
 
 }
