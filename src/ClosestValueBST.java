@@ -1,33 +1,33 @@
 public class ClosestValueBST {
 
+    //O(log n) time, O(n) space
     public int findClosestValueInBSTRecursively(Node tree, int target){
-        //O(log n) time, O(n) space
         return findClosesValueInBSTRecursively(tree, target, tree.value);
     }
 
-    public int findClosesValueInBSTRecursively(Node tree, int target, int closestValue){
-        if(Math.abs(target - closestValue) > Math.abs(target - tree.value)){
-            closestValue = tree.value;
+    public int findClosesValueInBSTRecursively(Node node, int target, int closestValue){
+        if(Math.abs(target - closestValue) > Math.abs(target - node.value)){
+            closestValue = node.value;
         }
-        if(target < tree.value && tree.left !=null){
-            return findClosesValueInBSTRecursively(tree.left, target, closestValue);
-        } else if (target > tree.value && tree.right !=null) {
-            return findClosesValueInBSTRecursively(tree.right, target, closestValue);
+        if(target < node.value && node.left !=null){
+            return findClosesValueInBSTRecursively(node.left, target, closestValue);
+        } else if (target > node.value && node.right !=null) {
+            return findClosesValueInBSTRecursively(node.right, target, closestValue);
         } else {
             return closestValue;
         }
     }
 
-    public int findClosestValueInBSTIteratively(Node tree, int target){
-        //O(log n) time, O(1) space
-        return findClosestValueInBSTIteratively(tree, target, tree.value);
+    //O(log n) time, O(1) space
+    public int findClosestValueInBSTIteratively(Node root, int target){
+        return findClosestValueInBSTIteratively(root, target, root.value);
     }
 
-    public int findClosestValueInBSTIteratively(Node tree, int target, int closest){
-        var currentNode = tree;
+    public int findClosestValueInBSTIteratively(Node root, int target, int closestValue){
+        var currentNode = root;
         while(currentNode != null){
-            if(Math.abs(target - closest) > Math.abs(target - currentNode.value)){
-                closest = currentNode.value;
+            if(Math.abs(target - closestValue) > Math.abs(target - currentNode.value)){
+                closestValue = currentNode.value;
             }
             if(target < currentNode.value){
                 currentNode = currentNode.left;
@@ -36,7 +36,7 @@ public class ClosestValueBST {
             else
                 break;
         }
-        return closest;
+        return closestValue;
     }
 
     class Node {
