@@ -1,3 +1,4 @@
+import java.util.HashMap;
 import java.util.Map;
 
 public class Fibonnacci {
@@ -12,12 +13,19 @@ public class Fibonnacci {
 
     //O(n) time, O(n) space
     //store values in hashtable, during recursive calls get previous calculations in O(1) time
-    public static int getNthFibMemoization(int n, Map<Integer, Integer> memoize){
+    public static int getNthFibMemoize(int n){
+        Map<Integer, Integer> memoize = new HashMap<Integer, Integer>();
+        memoize.put(1, 0);
+        memoize.put(2, 1);
+        return getNthFibMemoizeHelper(n, memoize);
+    }
+
+    public static int getNthFibMemoizeHelper(int n, Map<Integer, Integer> memoize){
         if (memoize.containsKey(n)) {
             return memoize.get(n); //get stored solution for fib(n) in O(1) time
         } else {
-            memoize.put(n, getNthFibMemoization(n-1, memoize)
-                            + getNthFibMemoization(n-2, memoize));
+            memoize.put(n, getNthFibMemoizeHelper(n-1, memoize)
+                            + getNthFibMemoizeHelper(n-2, memoize));
         } return memoize.get(n);
     }
 
