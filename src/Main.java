@@ -1,13 +1,21 @@
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Objects;
+
+
 public class Main {
 
     public static void main(String[] args) {
-        nodeDepths.Node root = new nodeDepths.Node(12);
-        root.left = new nodeDepths.Node(7);
-        root.right = new nodeDepths.Node(1);
-        root.left.left = new nodeDepths.Node(8);
-        root.left.right = new nodeDepths.Node(5);
-        int depth = nodeDepths.nodeDepthsRecusive(root);
-        System.out.println(depth);
+        List<Object> test =
+                new ArrayList<Object>(
+                        Arrays.asList(5, 2,
+                                new ArrayList<Object>(Arrays.asList(7, -1)),
+                                3,
+                                new ArrayList<Object>(Arrays.asList(6,
+                                        new ArrayList<Object>(Arrays.asList(-13, 8)), 4))));
+        ProductSum.productSum(test);
     }
 }
 
