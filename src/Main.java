@@ -6,16 +6,9 @@ import java.util.Objects;
 
 
 public class Main {
-
     public static void main(String[] args) {
-        List<Object> test =
-                new ArrayList<Object>(
-                        Arrays.asList(5, 2,
-                                new ArrayList<Object>(Arrays.asList(7, -1)),
-                                3,
-                                new ArrayList<Object>(Arrays.asList(6,
-                                        new ArrayList<Object>(Arrays.asList(-13, 8)), 4))));
-        ProductSum.productSum(test);
+        var array = new int[]{141, 1, 17, -7, -17, -27, 18, 541, 8, 7, 7};
+        ThreeLargestNumbers.returnThreeLargest(array);
     }
 }
 
