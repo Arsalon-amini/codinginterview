@@ -7,8 +7,7 @@ import java.util.Objects;
 
 public class Main {
     public static void main(String[] args) {
-        var array = new int[]{141, 1, 17, -7, -17, -27, 18, 541, 8, 7, 7};
-        ThreeLargestNumbers.returnThreeLargest(array);
+        System.out.println(Palindrome.isPalindrome("abcacba"));
     }
 }
 
