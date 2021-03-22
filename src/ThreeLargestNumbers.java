@@ -5,9 +5,9 @@ public class ThreeLargestNumbers {
     public static int [] returnThreeLargest(int [] array){
         int [] threeLargest = {Integer.MIN_VALUE, Integer.MIN_VALUE, Integer.MIN_VALUE}; //initialize output array to basically 0's
         for (int num: array){
-            updateLargest(threeLargest, num); //TODO
+            updateLargest(threeLargest, num);
         }
-        return threeLargest; //final sorted array
+        return threeLargest;
     }
 
     public static void updateLargest(int [] threeLargest, int num){

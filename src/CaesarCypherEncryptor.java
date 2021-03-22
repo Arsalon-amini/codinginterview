@@ -1,4 +1,4 @@
-public class Encryptor {
+public class CaesarCypherEncryptor {
 
     //O(n) time, O(n) space
     public static String caesarCypherEncryptor(String str, int key){
