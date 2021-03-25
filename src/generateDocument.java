@@ -21,4 +21,23 @@ public class generateDocument {
         }
         return true;
     }
+
+    //O(m * (n + m)) time approx O(n^2) if n.length approx equal to m.length, O(1) space
+    public static boolean generateDocumentV2(String characters, String document){
+        for(int idx = 0; idx < document.length(); idx++){
+            char character = document.charAt(idx);
+            int documentFrequency = countCharacterFrequency(character, document); //O(n) time
+            int charactersFrequency = countCharacterFrequency(character, characters); //O(m) time
+            if(documentFrequency > charactersFrequency) return false;
+        }
+        return true;
+    }
+    public static int countCharacterFrequency(char character, String target){
+        int frequency = 0;
+        for(int idx = 0; idx < target.length(); idx++){
+            char c = target.charAt(idx);
+            if(c == character) frequency +=1;
+        }
+        return frequency;
+    }
 }
