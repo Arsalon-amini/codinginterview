@@ -14,4 +14,30 @@ public class ArrayOfProducts {
         }
         return products;
     }
+
+    //O(N) time, where N is # of input elements
+    //O(N) space
+    public static int [] arrayOfProductsVersion2(int [] array){
+        int [] products = new int[array.length];
+        int [] rightProducts = new int [array.length];
+        int [] leftProducts = new int [array.length];
+
+        int leftRunningProduct = 1;
+        for (int i = 0; i < array.length; i++){
+            leftProducts[i] = leftRunningProduct;
+            leftRunningProduct *= array[i];
+        }
+
+        int rightRunningProduct = 1;
+        for(int j = array.length - 1; j >= 0; j--){
+            rightProducts[j] = rightRunningProduct;
+            rightRunningProduct *= array[j];
+        }
+
+        for(int k = 0; k < array.length; k++){
+            products[k] = leftProducts[k] * rightProducts[k];
+        }
+
+        return products;
+    }
 }
