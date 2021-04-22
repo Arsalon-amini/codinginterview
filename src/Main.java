@@ -1,14 +1,16 @@
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
-        List<Integer> array = Arrays.asList(1, 2, 5, 7, 10, 13, 14, 15, 22);
+        List<Integer> array = Arrays.asList(10, 4, 2, 1, 3, 17, 19, 18);
 
+        //List<Integer> preOrderTraversalValues = new ArrayList<Integer>(Arrays.asList(10, 4, 2, 1, 3, 17, 19, 18));
 
-        ConstructMinHeightBST.minHeightBSTSoln2(array);
+        var root = ConstructBSTPreOrder.constructBST(array);
 
-        System.out.println(array);
+        System.out.println(root);
 
 
     }
