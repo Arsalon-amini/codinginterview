@@ -25,4 +25,45 @@ public class LevenshteinDistance {
         return edits[str2.length()][str1.length()]; //return final value in 2D array (solution)
     }
 
+    //O(NM) time, where N is length of str1 and M is length of str2
+    //O(min(N,M)) space
+    public static int levenshteinDistanceV2(String str1, String str2){
+        //determine which string is smaller
+        var smallerString = str1.length() < str2.length() ? str1 : str2;
+        var largerString = str1.length() >= str2.length() ? str2 : str1;
+
+        //store only two rows of original 2D array
+        int [] evenRow = new int[smallerString.length() + 1];
+        int [] oddRow = new int[smallerString.length() + 1];
+
+        //initialize base cases
+        for(int col = 0; col < smallerString.length() + 1; col++) {
+            evenRow[col] = col;
+        }
+
+        //pointers
+        int[] currentRow;
+        int [] previousRow;
+
+        for(int i = 1; i < largerString.length() + 1; i++){
+            if(i % 2 == 1){
+                currentRow = oddRow;
+                previousRow = evenRow;
+            } else {
+                currentRow = evenRow;
+                previousRow = oddRow;
+            }
+            currentRow[0] = i;
+            for(int col = 1; col < smallerString.length() + 1; col++){
+                if(largerString.charAt(i - 1) == smallerString.charAt(col - 1)){
+                    currentRow[col] = previousRow[col - 1];
+                } else {
+                    currentRow[col] =
+                            1 + Math.min(previousRow[col - 1], Math.min(previousRow[col], currentRow[col - 1]));
+                }
+            }
+        }
+        return largerString.length() % 2 == 0 ? evenRow[smallerString.length()] : oddRow [smallerString.length()];
+    }
+
 }
