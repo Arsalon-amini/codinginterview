@@ -30,4 +30,23 @@ public class NumberOfWaysToTraverseGraph {
         return numberOfWays[height][width];
     }
 
+    //O(N + M) time - have to calculate factorial N to 1 (N, N-1, N-2, ...) and M to 1 (M-1, M-2...)
+    //O(1) space - constant space, no extra data structures used (only calcuations)
+    public static int numberOfWaysToTraverseGraphFactorial(int width, int height){
+        int xDistStartToCorner = width - 1; //accounts for position 0 (start)
+        int yDistStartToCorner = height - 1;
+
+        int numerator = factorial(xDistStartToCorner + yDistStartToCorner);
+        int denominator = factorial(xDistStartToCorner) * factorial(yDistStartToCorner);
+        return numerator / denominator;
+    }
+
+    public static int factorial (int num){
+        int result = 1;
+
+        for(int n = 2; n < num + 1; n++){
+            result *= n;
+        }
+        return result;
+    }
 }
