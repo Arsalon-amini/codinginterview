@@ -16,6 +16,6 @@ public class HasSingleCycle {
     public static int getNextIdx(int currentIdx, int[] array){
         int jump = array[currentIdx];
         int nextIdx = (currentIdx + jump) % array.length; //when hits array bounds, idx wraps around
-        return nextIdx >= 0 ? nextIdx : nextIdx + array.length;
+        return nextIdx >= 0 ? nextIdx : nextIdx + array.length; //if negative jump, acts like a backward traverse (adding ar.len)
     }
 }
