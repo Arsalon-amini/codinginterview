@@ -21,7 +21,7 @@ public class BreadthFirstSearch {
         public List<String> breadthFirstSearch(List<String> array){
             Queue<Node> queue = new LinkedList<Node>();
             queue.add(this);
-            
+
             while(!queue.isEmpty()) {
                 var current = queue.poll(); //pops out element at top of queue
                 array.add(current.name);

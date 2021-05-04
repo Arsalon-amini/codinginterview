@@ -12,11 +12,11 @@ public class RiverSizes {
                 if(visited[row][col]) continue; //if node already visited, skip
                 traverseNode(row, col, matrix, visited, riverSizes); //traverse unvisited node
             }
-            return riverSizes;
         }
+        return riverSizes;
     }
 
-    public static void traverseNode(int row, int col, int[][] matrix, boolean[][] visited, List<Integer> riverSizes){
+    private static void traverseNode(int row, int col, int[][] matrix, boolean[][] visited, List<Integer> riverSizes){
         int currentRiverSize = 0;
         var nodesToExplore = new Stack<Integer[]>(); //each value is a [row, column] index for a node aka x = [ [row, col], [row, col] ]
 

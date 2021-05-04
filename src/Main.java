@@ -4,9 +4,14 @@ import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
-        int width = 4;
-        int height = 3;
-        NumberOfWaysToTraverseGraph.numberOfWaysToTraverseGraph(width, height);
+        int [][] input = {
+                {1, 0, 0, 1, 0},
+                {1, 0, 1, 0, 0},
+                {0, 0, 1, 0, 1},
+                {1, 0, 1, 0, 1},
+                {1, 0, 1, 1, 0}
+        };
+        var output = RiverSizes.riverSizes(input);
     }
 }
 
