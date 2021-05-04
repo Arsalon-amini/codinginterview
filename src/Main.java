@@ -12,6 +12,7 @@ public class Main {
                 {1, 0, 1, 1, 0}
         };
         var output = RiverSizes.riverSizes(input);
+        System.out.println(output);
     }
 }
 

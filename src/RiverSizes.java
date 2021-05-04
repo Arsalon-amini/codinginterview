@@ -18,13 +18,13 @@ public class RiverSizes {
 
     private static void traverseNode(int row, int col, int[][] matrix, boolean[][] visited, List<Integer> riverSizes){
         int currentRiverSize = 0;
-        var nodesToExplore = new Stack<Integer[]>(); //each value is a [row, column] index for a node aka x = [ [row, col], [row, col] ]
+        Stack<Integer[]> nodesToExplore = new Stack<Integer[]>(); //each value is a [row, column] index for a node aka x = [ [row, col], [row, col] ]
 
         nodesToExplore.push(new Integer[]{row, col}); //first node to explore is current
 
         //depth first search (iteratively)
         while(!nodesToExplore.empty()){
-            var currentNode = nodesToExplore.pop(); //pops off [row,col] int array
+            Integer[] currentNode = nodesToExplore.pop(); //pops off [row,col] int array
             row = currentNode[0];
             col = currentNode[1];
 
@@ -35,7 +35,7 @@ public class RiverSizes {
             currentRiverSize++; //current node hasn't been visited is a 1, increment river size
 
             //get current node's neighbors append to nodes to explore stack (depth first traversal)
-            var unvisitedNeighbors = getUnvisitedNeighbors(row, col, matrix, visited);
+            List<Integer[]> unvisitedNeighbors = getUnvisitedNeighbors(row, col, matrix, visited);
 
             //append unvisited neighbors to our nodes to explore stack
             for(Integer[] neighbor : unvisitedNeighbors){
@@ -46,7 +46,7 @@ public class RiverSizes {
     }
 
     public static List<Integer[]> getUnvisitedNeighbors(int row, int col, int[][] matrix, boolean[][] visited){
-        var unvisitedNeighbors = new ArrayList<Integer[]>(); //empty array, follows List interface
+        List<Integer[]> unvisitedNeighbors = new ArrayList<Integer[]>(); //empty array, follows List interface
 
         if(row > 0 && !visited[row - 1][col])  //neighbor above current node (not top row)
             unvisitedNeighbors.add(new Integer[]{row - 1, col}); //append indices of neighbor above
