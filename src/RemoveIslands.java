@@ -63,6 +63,38 @@ public class RemoveIslands {
 
         }
     }
+    
+    //sol 2 -
+    // O(wh) time where w is the width and h is height
+    // O(wh) space - worst case (entire matrix is 1's, stack has all values)
+    // >O(wh) space - average case (stack will hold only a few values)
+
+    public static int[][] removeIslandsSoln2(int[][] matrix){
+        //update 1's connected to border to 2's (no auxiliary data structure!)
+        for(int row = 0; row < matrix.length; row++){
+            for(int col = 0; col < matrix[0].length; col++){
+                boolean isBorderRow = row == 0 || row == matrix.length - 1;
+                boolean isBorderCol = col == 0 || col == matrix[0].length - 1;
+                boolean isBorderPosition = isBorderRow || isBorderCol;
+
+                if(!isBorderPosition) continue;
+                if(matrix[row][col] != 1) continue;
+
+                changeOnesConnectedToBorderToTwos(matrix, row, col);
+            }
+        }
+        //iterate 2D matrix replacing 2's with 1's and 1's w/ 0's
+        for(int row = 0; row < matrix.length; row++){
+            for(int col = 0; col < matrix[0].length; col++){
+                int value = matrix[row][col];
+                if(value == 1)
+                    matrix[row][col] = 0;
+                else if(value == 2)
+                    matrix[row][col] = 1;
+            }
+        }
+        return matrix;
+    }
 
     public static ArrayList<int[]> getNeighbors (int[][] matrix, int row, int col){
         int numRows = matrix.length;
@@ -79,5 +111,28 @@ public class RemoveIslands {
             neighbors.add(new int[]{row, col + 1}); //RIGHT neighbor
 
         return neighbors;
+    }
+
+    public static void changeOnesConnectedToBorderToTwos(int[][] matrix, int startRow, int startCol){
+        Stack<int[]> stack = new Stack<int[]>();
+        stack.push(new int[]{startRow,startCol});
+
+        //DFS only adding 1's to stack
+        while(stack.size() > 0){
+            int[] currentPosition = stack.pop();
+            int currentRow = currentPosition[0];
+            int currentCol = currentPosition[1];
+
+            matrix[currentRow][currentCol] = 2; //update border 1's to 2's
+
+            ArrayList<int[]> neighbors = getNeighbors(matrix, currentRow, currentCol);
+            for(int [] neighbor : neighbors){
+                int row = neighbor[0];
+                int col = neighbor[1];
+
+                if(matrix[row][col] != 1) continue; //skip 0's value neighbors
+                stack.push(neighbor);
+            }
+        }
     }
 }
