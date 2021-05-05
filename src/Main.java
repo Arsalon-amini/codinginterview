@@ -5,13 +5,14 @@ import java.util.List;
 public class Main {
     public static void main(String[] args) {
         int [][] input = {
-                {1, 0, 0, 1, 0},
-                {1, 0, 1, 0, 0},
-                {0, 0, 1, 0, 1},
-                {1, 0, 1, 0, 1},
-                {1, 0, 1, 1, 0}
+                {1, 0, 0, 0, 0, 0},
+                {0, 1, 0, 1, 1, 1},
+                {0, 0, 1, 0, 1, 0},
+                {1, 1, 0, 0, 1, 0},
+                {1, 0, 1, 1, 0, 0},
+                {1, 0, 0, 0, 0, 1}
         };
-        var output = RiverSizes.riverSizes(input);
+        var output = RemoveIslands.removeIslands(input);
         System.out.println(output);
     }
 }
