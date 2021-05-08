@@ -74,5 +74,4 @@ public class CycleInGraph {
         colors[vertex] = BLACK; //traversed through all edges of current node, completed DFS for this node (moving up call stack)
         return false; //if cycle is present, will return in the for each loop
     }
-
 }

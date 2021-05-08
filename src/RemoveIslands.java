@@ -63,7 +63,6 @@ public class RemoveIslands {
 
         }
     }
-    
     //sol 2 -
     // O(wh) time where w is the width and h is height
     // O(wh) space - worst case (entire matrix is 1's, stack has all values)
