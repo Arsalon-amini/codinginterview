@@ -28,17 +28,18 @@ public class PowerSet {
         //base case or empty set []
         if(idx < 0){
             List<List<Integer>> emptySet = new ArrayList<List<Integer>>();
+            emptySet.add(new ArrayList<Integer>());
             return emptySet;
         }
         int element = array.get(idx);
-        List<List<Integer>> subsets = getPowerSetRecursively(array, idx - 1); //recursive call
+        List<List<Integer>> powersets = getPowerSetRecursively(array, idx - 1); //recursive call
 
-        int length = subsets.size();
+        int length = powersets.size();
         for(int i = 0; i < length; i++){
-            List<Integer> currentSubSet = new ArrayList<Integer>(subsets.get(i)); //new subset
+            List<Integer> currentSubSet = new ArrayList<Integer>(powersets.get(i)); //new subset
             currentSubSet.add(element);
-            subsets.add(currentSubSet);
+            powersets.add(currentSubSet);
         }
-        return subsets;
+        return powersets;
     }
 }
