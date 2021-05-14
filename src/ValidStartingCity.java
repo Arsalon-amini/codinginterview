@@ -1,46 +1,46 @@
 public class ValidStartingCity {
-    public int validStartingCity(int [] distances, int [] fuel, int mpg){
-        //O(n^2) time, O(1) space
-        int numberOfCities = distances.length;
+    //O(n^2) time | O(1) space
+    public static int validStartingCity(int [] distance, int [] fuel, int mpg){
+        int numOfCities = distance.length;
 
-        for(int startCity = 0; startCity < numberOfCities; startCity++){
-            int availableFuel = 0;
-            //loop from starting city through all other cities (back to self)
-            for(int currentCity = startCity; currentCity < startCity + numberOfCities; currentCity++) { //iterates all cities
-                if (availableFuel < 0) continue;
+        for(int startCityIdx = 0; startCityIdx < numOfCities; startCityIdx++){
+            int milesOfFuelRemaining = 0;
 
-                int currentCityIdx = currentCity % numberOfCities; //wraps index from ending back to beginning indices
+            for(int currentCityIdx = startCityIdx; currentCityIdx < startCityIdx + numOfCities; currentCityIdx++){
+                if(milesOfFuelRemaining < 0) continue;
 
-                int gallonsAvailableAtCurrentCity = fuel[currentCityIdx];
-                int distanceToNextCity = distances[currentCityIdx];
-                availableFuel += gallonsAvailableAtCurrentCity * mpg - distanceToNextCity;
+                int currentCityIdxRotated = currentCityIdx % numOfCities;
+
+                int gallonsFromCurrentCity = fuel[currentCityIdxRotated];
+                int distanceToNextCity = distance[currentCityIdxRotated];
+                milesOfFuelRemaining += gallonsFromCurrentCity * mpg - distanceToNextCity;
+
             }
-            if(availableFuel >= 0)
-                return startCity;
+            if(milesOfFuelRemaining >= 0)
+                return startCityIdx;
         }
         return -1;
     }
 
-    public int validStartingCityV2(int [] distances, int [] fuel, int mpg){
-        //O(n) time, O(1) space
-        int numberOfCities = distances.length;
-        int availableFuel = 0;
 
-        int minFuelSoFar = 0;
-        int minCityIdxSoFar = 0;
+    //O(n) time | O(1) space
+    public static int validStartingCityOptimized(int[] distance, int[] fuel, int mpg) {
+        int numOfCities = distance.length;
+        int milesOfFuelRemaining = 0;
 
-        for(int i = 1; i < numberOfCities; i++){
-            int distanceFromPreviousCity = distances[i - 1];
-            int previousCityGallons = fuel[i - 1];
+        int idxValidStartingCityCandidate = 0;
+        int minMilesFuelRemaining = 0;
 
-            availableFuel += previousCityGallons * mpg - distanceFromPreviousCity;
+        for (int cityIdx = 1; cityIdx < numOfCities; cityIdx++) {
+            int previousCityDistance = distance[cityIdx - 1];
+            int gallonsFromPreviousCity = fuel[cityIdx - 1];
 
-            if(availableFuel < minFuelSoFar){
-                minFuelSoFar = availableFuel;
-                minCityIdxSoFar = i;
-            }
+            milesOfFuelRemaining += gallonsFromPreviousCity * mpg - previousCityDistance;
+
+            if (milesOfFuelRemaining < minMilesFuelRemaining)
+                idxValidStartingCityCandidate = cityIdx;
         }
-        return minCityIdxSoFar;
+        return idxValidStartingCityCandidate;
     }
 }
 
