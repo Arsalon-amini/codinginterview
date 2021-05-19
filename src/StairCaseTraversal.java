@@ -36,4 +36,20 @@ public class StairCaseTraversal {
         memoize.put(height, numWaysToTop);
         return numWaysToTop;
     }
+
+    //O(n*k) time and O(n) space
+    public static int stairCaseTraversalV3(int height, int maxSteps){
+        int [] waysToTop = new int[height + 1];
+        waysToTop[0] = 1;
+        waysToTop[1] = 1;
+
+        for(int currentHeight = 2; currentHeight < height + 1; currentHeight++){
+            int step = 1;
+            while(step <= maxSteps && step <= currentHeight){
+                waysToTop[currentHeight] = waysToTop[currentHeight] + waysToTop[currentHeight - step];
+                step += 1;
+            }
+        }
+        return waysToTop[height];
+    }
 }
