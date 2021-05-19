@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class StairCaseTraversal {
@@ -37,7 +38,7 @@ public class StairCaseTraversal {
         return numWaysToTop;
     }
 
-    //O(n*k) time and O(n) space
+    //O(n*k) time and O(n) space | [dynamic programing approach]
     public static int stairCaseTraversalV3(int height, int maxSteps){
         int [] waysToTop = new int[height + 1];
         waysToTop[0] = 1;
@@ -51,5 +52,25 @@ public class StairCaseTraversal {
             }
         }
         return waysToTop[height];
+    }
+
+    //O(n) time and O(n) space | [sliding window approach]
+    public static int StairCaseTraverseV4(int height, int maxSteps){
+        int currentNumberOfWays = 0;
+        ArrayList<Integer> waysToTop = new ArrayList<Integer>();
+        waysToTop.add(1);
+
+        for(int currentHeight = 1; currentHeight < height + 1; currentHeight++){
+            int startOfWindow = currentHeight - maxSteps - 1;
+            int endOfWindow = currentHeight - 1;
+
+            if(startOfWindow >= 0)
+                currentNumberOfWays -= waysToTop.get(startOfWindow); //subtract previous value from sum
+
+            currentNumberOfWays += waysToTop.get(endOfWindow); //add next value to sum
+            waysToTop.add(currentNumberOfWays); //insert answer
+
+        }
+        return waysToTop.get(height);
     }
 }
