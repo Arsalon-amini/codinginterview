@@ -1,6 +1,6 @@
 public class ThreeNumSort {
 
-    //O(n) time | O(1) space where n is length of input array
+    //O(n) time | O(1) space where n is length of input array - three iterations
     public int [] threeNumSortV1(int [] array, int [] order){
         int [] counts = new int[] {0 , 0, 0}; //each index represent a bucket corresponding with element in order array
 
@@ -39,5 +39,36 @@ public class ThreeNumSort {
             sum += array[i];
         }
         return sum;
+    }
+
+    //O(n) time | O(1) space - two iterations only
+    public int[] threeNumberSortV2(int [] array, int [] order){
+        int firstValue = order[0];
+        int lastValue = order[2];
+
+        //iterate left to right (forward)
+        int firstIdx = 0;
+        for(int idx = 0; idx < array.length; idx++){
+            if(array[idx] == firstValue){
+                swap(array, firstIdx, idx);
+                firstIdx += 1;
+            }
+        }
+
+        //iterate left to right (backward)
+        int thirdIdx = array.length - 1;
+        for(int idx = array.length - 1; idx >= 0; idx--){
+            if(array[idx] == lastValue){
+                swap(array, thirdIdx, idx);
+                thirdIdx--;
+            }
+        }
+        return array;
+    }
+
+    public void swap (int [] array, int i, int j){
+        int temp = array[j];
+        array[j] = array[i];
+        array[i] = temp;
     }
 }
