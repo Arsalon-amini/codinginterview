@@ -1,5 +1,5 @@
 public class SearchSortedArray {
-    //O(n * m) time | wost case where n is width and m is the height of the matrix 
+    //O(n * m) time | wost case where n is width and m is the height of the matrix
     //O(1) space
     public static int [] searchInSortedMatrix(int[][] matrix, int target){
         int row = 0;

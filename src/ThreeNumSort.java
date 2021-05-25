@@ -67,6 +67,7 @@ public class ThreeNumSort {
     }
 
 
+    //O(n) time | O(1) space - requires only a single pass
     public int [] threeNumberSortV3(int [] array, int [] order){
         int firstValue = order[0];
         int secondValue = order[1];
