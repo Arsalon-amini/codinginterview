@@ -1,6 +1,4 @@
-import java.util.Arrays;
-import java.util.List;
-import java.util.Stack;
+import java.util.*;
 
 public class BalancedBrackets {
 
@@ -42,5 +40,32 @@ public class BalancedBrackets {
 
     private boolean bracketsMatch(char left, char right){
         return leftBrackets.indexOf(left) == rightBrackets.indexOf(right); //compares index of char in left w/ index of char of right
+    }
+
+    //O(n) time | O(n) space
+    public static boolean balancedBracketsSol2 (String str){
+        String openingBrackets = "([{";
+        String closingBrackets = ")]}";
+        Map<Character, Character> matchingBrackets = new HashMap<Character, Character>();
+        matchingBrackets.put(')', '(');
+        matchingBrackets.put(']','[');
+        matchingBrackets.put('}', '{');
+
+        List<Character> stack = new ArrayList<Character>();
+        for(int i = 0; i < str.length(); i++){
+            char letter = str.charAt(i);
+            if(openingBrackets.indexOf(letter) != -1) //add to stack if opening bracket
+                stack.add(letter);
+            else if (closingBrackets.indexOf(letter) != -1){ //
+                if(stack.size() == 0)
+                    return false;
+                if(stack.get(stack.size() - 1) == matchingBrackets.get(letter)){
+                    stack.remove(stack.size() - 1);
+                } else {
+                    return false;
+                }
+            }
+        }
+        return stack.size() == 0;
     }
 }
