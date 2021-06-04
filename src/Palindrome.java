@@ -26,7 +26,7 @@ public class Palindrome {
     }
 
     //O(n) time
-    // //O(n) space - using recursive stack
+    //O(n) space - using recursive stack
     public static boolean isPalindrome2(String str){
         return isPalindrome2(str, 0);
     }
