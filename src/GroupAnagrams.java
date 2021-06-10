@@ -1,5 +1,7 @@
 import java.util.*;
 
+//O(w*n*log(n)) time where w is number of words in input string, and n is length of the longest
+//O(wn) space
 public class GroupAnagrams {
     public static List<List<String>> groupAnagrams(List<String> words){
         Map<String, List<String>> anagrams = new HashMap<String, List<String>>();
